@@ -12,6 +12,7 @@ def transfer_file():
     pasta_ciencias = r'C:\Users\Kauan\Desktop\Conteúdos\Ciências'
     pasta_ead = r'C:\Users\Kauan\Desktop\Conteúdos\EAD'
     pasta_matematica = r'C:\Users\Kauan\Desktop\Conteúdos\Matemática'
+    pasta_proj = r'C:\Users\Kauan\Desktop\Conteúdos\PROJ'
 
     try:
         for filename in os.listdir(source):
@@ -29,9 +30,16 @@ def transfer_file():
             elif filename.startswith("Mat_"):
                 shutil.move(sourc, pasta_matematica)
 
+            elif filename.startswith("PROJ_"):
+                shutil.move(sourc, pasta_proj)
             else:
-                shutil.move(sourc, pasta_geral)
-                
+                conf = input(f'documento {filename} não se enquadra nas classificações. \n Mover pasta geral? [s/n]')
+
+                if conf == 's':
+                    shutil.move(sourc, pasta_geral)
+                else:
+                    pass
+
         print("Analisando arquivos...")
         time.sleep(1)
         print("\033[33mProcessando...")
